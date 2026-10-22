@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if object %}Bearbeiten{% else %}Neu anlegen{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="content-card form-card">
+    <header class="page-header">
+        <h2>
+            {% if object %}Datensatz bearbeiten{% else %}Datensatz neu anlegen{% endif %}
+        </h2>
+    </header>
+
+    <form method="post" class="data-form">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+            <div class="form-field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                {% endif %}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
+        <div class="form-actions">
+            <button type="submit">Speichern</button>
+            <a href="{{ view.success_url }}">Abbrechen</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

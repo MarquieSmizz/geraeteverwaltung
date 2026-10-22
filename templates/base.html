@@ -20,24 +20,33 @@
                             Geräte
                         </a>
                     </li>
-                    <li>
-                        <span class="navigation-disabled">
-                            Gerätetypen
-                            <small>in Vorbereitung</small>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="navigation-disabled">
-                            Firmwares
-                            <small>in Vorbereitung</small>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="navigation-disabled">
-                            Adressen
-                            <small>in Vorbereitung</small>
-                        </span>
-                    </li>
+
+                    {% if perms.devices.view_devicetype %}
+                        <li>
+                            <a href="{% url 'devices:devicetype-list' %}"
+                               class="{% if request.resolver_match.url_name == 'devicetype-list' or request.resolver_match.url_name == 'devicetype-create' or request.resolver_match.url_name == 'devicetype-update' %}active{% endif %}">
+                                Gerätetypen
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if perms.devices.view_firmware %}
+                        <li>
+                            <a href="{% url 'devices:firmware-list' %}"
+                               class="{% if request.resolver_match.url_name == 'firmware-list' or request.resolver_match.url_name == 'firmware-create' or request.resolver_match.url_name == 'firmware-update' %}active{% endif %}">
+                                Firmwares
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if perms.devices.view_adresse %}
+                        <li>
+                            <a href="{% url 'devices:adresse-list' %}"
+                               class="{% if request.resolver_match.url_name == 'adresse-list' or request.resolver_match.url_name == 'adresse-create' or request.resolver_match.url_name == 'adresse-update' %}active{% endif %}">
+                                Adressen
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav>
 

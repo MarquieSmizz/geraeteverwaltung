@@ -368,3 +368,45 @@ body {
         flex-wrap: wrap;
     }
 }
+
+.page-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.page-heading .page-header {
+    margin-bottom: 0;
+}
+
+.page-actions {
+    flex-shrink: 0;
+}
+
+.primary-link {
+    display: inline-block;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.3rem;
+    color: #ffffff;
+    background-color: #243b53;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.primary-link:hover {
+    background-color: #486581;
+}
+
+@media (max-width: 560px) {
+    .page-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .page-actions {
+        align-self: flex-start;
+    }
+}

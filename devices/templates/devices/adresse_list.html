@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Adressen{% endblock %}
+
+{% block content %}
+<section class="content-card">
+    <div class="page-heading">
+        <header class="page-header">
+            <h2>Adressen</h2>
+            <p>Verwaltung der Installationsadressen.</p>
+        </header>
+
+        <div class="page-actions">
+            {% if perms.devices.add_adresse %}
+                <a class="primary-link" href="{% url 'devices:adresse-create' %}">
+                    + Hinzufügen
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <form method="get" class="filter-form">
+        <div class="form-field">
+            <label for="id_q">Suche</label>
+            <input
+                type="search"
+                id="id_q"
+                name="q"
+                value="{{ request.GET.q }}"
+                placeholder="Straße, PLZ oder Ort"
+            >
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit">Suchen</button>
+            <a href="{% url 'devices:adresse-list' %}">Zurücksetzen</a>
+        </div>
+    </form>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Straße</th>
+                    <th>Hausnummer</th>
+                    <th>PLZ</th>
+                    <th>Ort</th>
+                    <th>Land</th>
+                    {% if perms.devices.change_adresse %}
+                        <th>Aktion</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for adresse in adressen %}
+                    <tr>
+                        <td>{{ adresse.strasse }}</td>
+                        <td>{{ adresse.hausnummer }}</td>
+                        <td>{{ adresse.plz }}</td>
+                        <td>{{ adresse.ort }}</td>
+                        <td>{{ adresse.land }}</td>
+                        {% if perms.devices.change_adresse %}
+                            <td>
+                                <a href="{% url 'devices:adresse-update' adresse.pk %}">
+                                    Bearbeiten
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">Keine Adressen gefunden.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

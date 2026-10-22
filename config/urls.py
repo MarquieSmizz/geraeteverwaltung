@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import path
+from django.urls import include, path
 
 from devices.views import DeviceListView
 
@@ -15,5 +15,6 @@ urlpatterns = [
         name="login",
     ),
     path("accounts/logout/", LogoutView.as_view(), name="logout"),
+    path("", include("devices.urls")),
     path("", DeviceListView.as_view(), name="home"),
 ]
