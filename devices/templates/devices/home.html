@@ -1,11 +1,86 @@
 {% extends "base.html" %}
 
-{% block title %}Geräteverwaltung{% endblock %}
+{% block title %}Geräte{% endblock %}
 
 {% block content %}
 <section class="content-card">
-    <h2>Geräteverwaltung</h2>
-    <p>Das Grundlayout der Anwendung ist eingerichtet.</p>
-    <p>Die Geräteübersicht wird im nächsten Implementierungsschritt ergänzt.</p>
+    <header class="page-header">
+        <h2>Geräte</h2>
+        <p>Schreibgeschützte Übersicht der verwalteten Geräte.</p>
+    </header>
+
+    <form method="get" class="filter-form">
+        <div class="form-field">
+            <label for="id_q">Seriennummer</label>
+            <input
+                type="search"
+                id="id_q"
+                name="q"
+                value="{{ search_query }}"
+                placeholder="Seriennummer suchen"
+            >
+        </div>
+
+        <div class="form-field">
+            <label for="id_device_type">Gerätetyp</label>
+            <select id="id_device_type" name="device_type">
+                <option value="">Alle Gerätetypen</option>
+                {% for device_type in device_types %}
+                    <option
+                        value="{{ device_type.device_type_id }}"
+                        {% if selected_device_type == device_type.device_type_id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ device_type }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit">Suchen</button>
+            <a href="{% url 'home' %}">Zurücksetzen</a>
+        </div>
+    </form>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Seriennummer</th>
+                    <th>Gerätetyp</th>
+                    <th>Firmware</th>
+                    <th>Standort</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                    <tr>
+                        <td>{{ device.seriennummer }}</td>
+                        <td>{{ device.device_type }}</td>
+                        <td>{{ device.firmware }}</td>
+                        <td>
+                            {% if device.adresse %}
+                                {{ device.adresse.ort }}
+                            {% else %}
+                                Nicht zugeordnet
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if device.is_active %}
+                                Aktiv
+                            {% else %}
+                                Inaktiv
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Keine Geräte gefunden.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 {% endblock %}

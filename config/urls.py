@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from devices.views import home
+from devices.views import DeviceListView
 
 
 urlpatterns = [
@@ -15,5 +15,5 @@ urlpatterns = [
         name="login",
     ),
     path("accounts/logout/", LogoutView.as_view(), name="logout"),
-    path("", home, name="home"),
+    path("", DeviceListView.as_view(), name="home"),
 ]
