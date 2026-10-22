@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Geräteverwaltung</title>
-</head>
-<body>
-    <main>
-        <h1>Geräteverwaltung</h1>
-        <p>Sie sind angemeldet.</p>
+{% extends "base.html" %}
 
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Abmelden</button>
-        </form>
-    </main>
-</body>
-</html>
+{% block title %}Geräteverwaltung{% endblock %}
+
+{% block content %}
+<section class="content-card">
+    <h2>Geräteverwaltung</h2>
+    <p>Das Grundlayout der Anwendung ist eingerichtet.</p>
+    <p>Die Geräteübersicht wird im nächsten Implementierungsschritt ergänzt.</p>
+</section>
+{% endblock %}

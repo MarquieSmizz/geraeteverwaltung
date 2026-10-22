@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Geräteverwaltung{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'devices/css/style.css' %}">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <h1>Geräteverwaltung</h1>
+
+            <nav aria-label="Hauptnavigation">
+                <ul class="navigation">
+                    <li>
+                        <a href="{% url 'home' %}"
+                           class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                            Geräte
+                        </a>
+                    </li>
+                    <li>
+                        <span class="navigation-disabled">
+                            Gerätetypen
+                            <small>in Vorbereitung</small>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="navigation-disabled">
+                            Firmwares
+                            <small>in Vorbereitung</small>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="navigation-disabled">
+                            Adressen
+                            <small>in Vorbereitung</small>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p class="user-info">
+                    Angemeldet als<br>
+                    <strong>{{ request.user.get_username }}</strong>
+                </p>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        Abmelden
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

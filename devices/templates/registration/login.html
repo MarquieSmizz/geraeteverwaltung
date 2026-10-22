@@ -1,21 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Anmeldung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldung – Geräteverwaltung</title>
+    <link rel="stylesheet" href="{% static 'devices/css/style.css' %}">
 </head>
-<body>
-    <main>
-        <h1>Anmeldung</h1>
+<body class="login-page">
+    <main class="login-card">
+        <header class="login-header">
+            <h1>Geräteverwaltung</h1>
+            <p>Bitte melden Sie sich an.</p>
+        </header>
 
         {% if form.errors %}
-            <p>Benutzername oder Passwort ist ungültig.</p>
+            <div class="login-error" role="alert">
+                Benutzername oder Passwort ist ungültig.
+            </div>
         {% endif %}
 
-        <form method="post">
+        <form method="post" class="login-form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Anmelden</button>
+
+            <div class="form-field">
+                <label for="{{ form.username.id_for_label }}">Benutzername</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ form.password.id_for_label }}">Passwort</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-button">Anmelden</button>
         </form>
     </main>
 </body>
