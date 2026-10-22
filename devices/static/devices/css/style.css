@@ -211,3 +211,160 @@ body {
 .login-button:hover {
     background-color: #486581;
 }
+
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-header h2 {
+    margin: 0 0 0.35rem;
+    color: #243b53;
+    font-size: 1.6rem;
+}
+
+.page-header p {
+    margin: 0;
+    color: #627d98;
+    font-size: 0.95rem;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.4fr) minmax(180px, 1fr) auto;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #d9e2ec;
+    border-radius: 0.35rem;
+    background-color: #f8fafc;
+}
+
+.filter-form .form-field {
+    gap: 0.3rem;
+}
+
+.filter-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334e68;
+}
+
+.filter-form input,
+.filter-form select {
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid #bcccdc;
+    border-radius: 0.3rem;
+    color: #1f2933;
+    background-color: #ffffff;
+    font: inherit;
+}
+
+.filter-form input:focus,
+.filter-form select:focus {
+    border-color: #486581;
+    outline: 2px solid rgb(72 101 129 / 20%);
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.filter-actions button,
+.filter-actions a {
+    min-height: 2.4rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.3rem;
+    font: inherit;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filter-actions button {
+    border: 0;
+    color: #ffffff;
+    background-color: #243b53;
+}
+
+.filter-actions button:hover {
+    background-color: #486581;
+}
+
+.filter-actions a {
+    border: 1px solid #bcccdc;
+    color: #334e68;
+    background-color: #ffffff;
+}
+
+.filter-actions a:hover {
+    background-color: #f0f4f8;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.table-container th,
+.table-container td {
+    padding: 0.75rem 0.65rem;
+    border-bottom: 1px solid #e6eaf0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table-container th {
+    color: #334e68;
+    background-color: #f8fafc;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.table-container tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.table-container tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+@media (max-width: 850px) {
+    .filter-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filter-actions {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .content-card {
+        padding: 1rem;
+    }
+
+    .filter-form {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-actions {
+        grid-column: auto;
+        flex-wrap: wrap;
+    }
+}
